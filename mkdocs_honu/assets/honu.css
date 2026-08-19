@@ -1,17 +1,27 @@
-/* Honu Robotics brand palette (placeholder until official brand assets land).
-   Deep sea teal primary, warm sand accent. */
+/* Honu Robotics brand palette, matched to honurobotics.com (Astra globals):
+   #082133 deep midnight navy (text, links, primary surfaces)
+   #9dbbcc ocean steel (interactive accent: hover, focus, selection)
+   #eff2ff / #bfd1ff pale blue supports */
 
 :root {
-  --md-primary-fg-color: #0e7c86;
-  --md-primary-fg-color--light: #35a3ad;
-  --md-primary-fg-color--dark: #0a5b63;
-  --md-accent-fg-color: #d9822b;
+  --md-primary-fg-color: #082133;
+  --md-primary-fg-color--light: #9dbbcc;
+  --md-primary-fg-color--dark: #04121d;
+  --md-accent-fg-color: #9dbbcc;
 }
 
 [data-md-color-scheme="slate"] {
-  --md-primary-fg-color: #0a5b63;
-  --md-accent-fg-color: #e8963f;
-  --md-hue: 200;
+  --md-primary-fg-color: #082133;
+  --md-accent-fg-color: #bfd1ff;
+  --md-hue: 210;
+  --md-typeset-a-color: #9dbbcc;
+}
+
+/* Text selection matches the site */
+.md-typeset ::selection,
+::selection {
+  background-color: #9dbbcc;
+  color: #082133;
 }
 
 /* Slightly larger logo in the header */
@@ -28,7 +38,7 @@
   left: 0.6rem;
   z-index: 4;
   background: var(--md-primary-fg-color);
-  color: var(--md-primary-bg-color);
+  color: #eff2ff;
   border-radius: 0.2rem;
   box-shadow: var(--md-shadow-z2);
 }
