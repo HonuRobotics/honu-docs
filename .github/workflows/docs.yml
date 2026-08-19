@@ -1,37 +1,77 @@
-name: docs
+# Reusable documentation workflow for Honu Robotics repositories.
+#
+# Consumers call it from their own workflow:
+#
+#   jobs:
+#     docs:
+#       uses: HonuRobotics/honu-docs/.github/workflows/docs.yml@v0.1.0
+#       permissions:
+#         contents: write
+#       with:
+#         default_version: lyrical
+#
+# Pull requests get a strict build only; pushes also deploy the built site
+# to gh-pages/<branch>/. Deploying the default version additionally updates
+# the site root redirect.
 
-# Reusable workflow: build (strict) on PRs, build and deploy a mike version on
-# branch pushes. The docs version is the branch name (ROS distro convention)
-# unless the caller overrides it.
+name: Documentation
+
 on:
   workflow_call:
     inputs:
-      version:
-        description: Docs version to deploy (defaults to the branch name)
+      default_version:
+        description: >
+          Branch whose deploy also updates the site root redirect. Leave
+          empty to use the repository default branch.
         type: string
         default: ''
+      docs_dir:
+        description: Directory holding conf.py and the Markdown sources.
+        type: string
+        default: 'docs'
+      python_version:
+        type: string
+        default: '3.12'
 
 jobs:
   docs:
     runs-on: ubuntu-latest
     permissions:
-      contents: write        # mike pushes to gh-pages
+      contents: write
+    # Serialize deploys per repository so two branches pushed together do
+    # not race on gh-pages; PR builds stay parallel and cancelable.
+    concurrency:
+      group: ${{ github.event_name == 'push' && format('docs-deploy-{0}', github.repository) || format('docs-build-{0}-{1}', github.repository, github.ref) }}
+      cancel-in-progress: ${{ github.event_name != 'push' }}
+    env:
+      DOCS_VERSION: ${{ github.head_ref || github.ref_name }}
+      DOCS_BASEURL: /${{ github.event.repository.name }}/
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0     # mike needs the gh-pages history
+          fetch-depth: 0
+
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-      - name: Install docs toolchain
-        run: pip install -r docs/requirements.txt
-      - name: Build (strict)
-        run: mkdocs build --strict
-      - name: Deploy version
+          python-version: ${{ inputs.python_version }}
+
+      - name: Install the documentation toolchain
+        run: pip install -r ${{ inputs.docs_dir }}/requirements.txt
+
+      - name: Build
+        run: sphinx-build -W --keep-going -b html ${{ inputs.docs_dir }} _build/html -d _build/doctrees
+
+      - name: Deploy
         if: github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          VERSION="${{ inputs.version }}"
-          [ -z "$VERSION" ] && VERSION="$GITHUB_REF_NAME"
-          mike deploy --push --update-aliases "$VERSION" latest
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          default="${{ inputs.default_version }}"
+          if [ -z "$default" ]; then
+            default="${{ github.event.repository.default_branch }}"
+          fi
+          extra=""
+          if [ "$DOCS_VERSION" = "$default" ]; then
+            extra="--make-default"
+          fi
+          honu-docs-deploy --html _build/html --version "$DOCS_VERSION" --base-url "$DOCS_BASEURL" $extra
