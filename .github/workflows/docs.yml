@@ -1,0 +1,37 @@
+name: docs
+
+# Reusable workflow: build (strict) on PRs, build and deploy a mike version on
+# branch pushes. The docs version is the branch name (ROS distro convention)
+# unless the caller overrides it.
+on:
+  workflow_call:
+    inputs:
+      version:
+        description: Docs version to deploy (defaults to the branch name)
+        type: string
+        default: ''
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write        # mike pushes to gh-pages
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0     # mike needs the gh-pages history
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install docs toolchain
+        run: pip install -r docs/requirements.txt
+      - name: Build (strict)
+        run: mkdocs build --strict
+      - name: Deploy version
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          VERSION="${{ inputs.version }}"
+          [ -z "$VERSION" ] && VERSION="$GITHUB_REF_NAME"
+          mike deploy --push --update-aliases "$VERSION" latest

@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mkdocs-honu"
+version = "0.1.0"
+description = "Honu Robotics branding and defaults for MkDocs Material documentation sites"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.10"
+dependencies = [
+  "mkdocs-material>=9.5",
+  "mike>=2.0",
+]
+
+[project.entry-points."mkdocs.plugins"]
+honu = "mkdocs_honu:HonuPlugin"
+
+[tool.setuptools]
+packages = ["mkdocs_honu"]
+
+[tool.setuptools.package-data]
+mkdocs_honu = ["assets/*", "overrides/**/*"]
