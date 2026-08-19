@@ -1,48 +1,24 @@
 # honu-docs
 
-Shared documentation tooling for Honu Robotics repositories: the `mkdocs-honu`
-branding package (MkDocs Material theme defaults, palette, logo, template
-overrides) and the reusable GitHub Actions workflow that builds and deploys
-versioned documentation to GitHub Pages with `mike`.
+Shared documentation tooling for Honu Robotics repositories:
 
-## Consumer setup
+- **`sphinx-honu`**, a pip installable Sphinx extension giving every site
+  the docs.ros.org look and behavior under Honu branding, MyST Markdown
+  sources, a per distribution version flyout and GitHub edit links.
+- **A reusable GitHub Actions workflow** that builds a repository's
+  `docs/` strictly on pull requests and deploys one version per branch to
+  GitHub Pages on push.
 
-`docs/requirements.txt`:
-
-```
-git+https://github.com/HonuRobotics/honu-docs
-```
-
-`mkdocs.yml`:
-
-```yaml
-site_name: BlueRobotics Models
-repo_url: https://github.com/HonuRobotics/bluerobotics_models
-theme:
-  name: material
-plugins:
-  - search
-  - honu
-nav:
-  - Home: index.md
-  # ...
-```
-
-`.github/workflows/docs.yml`:
-
-```yaml
-jobs:
-  docs:
-    uses: HonuRobotics/honu-docs/.github/workflows/docs.yml@main
-```
-
-Local preview:
+See the [documentation](https://honurobotics.github.io/honu-docs/) for
+setup and the versioning model, or build it locally:
 
 ```bash
-pip install -r docs/requirements.txt
-mkdocs serve
+pip install . && sphinx-build -W docs _build/html
 ```
 
-Versioning: the branch name is the docs version (ROS distro convention). The
-reusable workflow runs `mike deploy <branch> latest` on pushes to distro
-branches and a strict build check on pull requests.
+## Attribution
+
+The theme configuration and the version flyout structure derive from
+[ros2/ros2_documentation](https://github.com/ros2/ros2_documentation)
+(CC BY 4.0), the source of docs.ros.org. Brand assets are Honu Robotics
+originals, vendored from honurobotics.com.
