@@ -50,3 +50,41 @@
 .md-typeset table:not([class]) {
   font-size: 0.72rem;
 }
+
+/* ── TurtleBot4-manual feel: compact persistent sidebar, quieter chrome ── */
+
+/* Slimmer header */
+.md-header__topic {
+  font-weight: 600;
+}
+
+/* Sidebar: always-visible expanded tree, compact type, section headings */
+.md-nav {
+  font-size: 0.68rem;
+}
+.md-nav__title {
+  font-size: 0.68rem;
+}
+.md-sidebar .md-nav__item--section > .md-nav__link {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.62rem;
+  color: var(--md-default-fg-color--light);
+}
+.md-nav__item {
+  padding-top: 0.05rem;
+}
+
+/* Content: slightly narrower measure and tighter headings, TB4-style */
+.md-typeset {
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
+.md-typeset h1 {
+  font-weight: 700;
+  color: var(--md-default-fg-color);
+}
+.md-typeset h2 {
+  font-weight: 600;
+}

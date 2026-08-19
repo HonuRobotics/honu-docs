@@ -43,6 +43,7 @@ _THEME_DEFAULTS = {
     ],
     'features': [
         'navigation.sections',
+        'navigation.expand',
         'navigation.top',
         'navigation.footer',
         'search.suggest',
