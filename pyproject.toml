@@ -3,22 +3,22 @@ requires = ["setuptools>=64"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mkdocs-honu"
+name = "sphinx-honu"
 version = "0.1.0"
-description = "Honu Robotics branding and defaults for MkDocs Material documentation sites"
+description = "Honu Robotics documentation house style: docs.ros.org functionality, Honu branding"
 readme = "README.md"
-license = {text = "Apache-2.0"}
 requires-python = ">=3.10"
 dependencies = [
-  "mkdocs-material>=9.5",
-  "mike>=2.0",
+  "sphinx>=7",
+  "sphinx-rtd-theme>=2",
+  "myst-parser>=2",
 ]
 
-[project.entry-points."mkdocs.plugins"]
-honu = "mkdocs_honu:HonuPlugin"
+[project.scripts]
+honu-docs-deploy = "sphinx_honu.deploy:main"
 
 [tool.setuptools]
-packages = ["mkdocs_honu"]
+packages = ["sphinx_honu"]
 
 [tool.setuptools.package-data]
-mkdocs_honu = ["assets/*", "overrides/**/*"]
+sphinx_honu = ["static/*", "templates/*"]
