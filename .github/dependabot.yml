@@ -1,0 +1,12 @@
+# Keep the GitHub Actions used by the workflows and the Python dependencies
+# of the sphinx_honu package current.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
