@@ -1,0 +1,252 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using it in a repository &mdash; Honu Docs main documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/honu.css?v=44af46ee" />
+
+  
+    <link rel="shortcut icon" href="_static/honu-robotics-favicon.svg"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=a8da1a53"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Versioning model" href="versioning.html" />
+    <link rel="prev" title="Honu Docs" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Honu Docs
+              <img src="_static/honu-robotics-white-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using it in a repository</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#docs-conf-py">1. <code class="docutils literal notranslate"><span class="pre">docs/conf.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docs-requirements-txt">2. <code class="docutils literal notranslate"><span class="pre">docs/requirements.txt</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#github-workflows-docs-yml">3. <code class="docutils literal notranslate"><span class="pre">.github/workflows/docs.yml</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#one-time-repository-setup">One time repository setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-pages">Writing pages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="versioning.html">Versioning model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="versioning.html#the-flyout">The flyout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versioning.html#the-root-redirect">The root redirect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versioning.html#end-of-life">End of life</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="design.html#stock-functionality-painted">Stock functionality, painted</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design.html#why-a-shared-repository">Why a shared repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design.html#what-runs-in-ci">What runs in CI</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Honu Docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Using it in a repository</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/HonuRobotics/honu-docs/blob/main/docs/usage.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="using-it-in-a-repository">
+<h1>Using it in a repository<a class="headerlink" href="#using-it-in-a-repository" title="Link to this heading"></a></h1>
+<p>Three small files opt a repository in.</p>
+<section id="docs-conf-py">
+<h2>1. <code class="docutils literal notranslate"><span class="pre">docs/conf.py</span></code><a class="headerlink" href="#docs-conf-py" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">project</span> <span class="o">=</span> <span class="s1">'BlueRobotics Models'</span>
+<span class="n">copyright</span> <span class="o">=</span> <span class="s1">'Honu Robotics'</span>
+<span class="n">author</span> <span class="o">=</span> <span class="s1">'Honu Robotics'</span>
+
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'sphinx_honu'</span><span class="p">]</span>
+<span class="n">honu_github</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'HonuRobotics'</span><span class="p">,</span> <span class="s1">'bluerobotics_models'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The extension applies the theme, its docs.ros.org configuration, the brand
+skin, the version flyout and the GitHub edit link, and enables MyST so all
+pages are Markdown. Anything set explicitly in <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> wins over the
+extension defaults.</p>
+</section>
+<section id="docs-requirements-txt">
+<h2>2. <code class="docutils literal notranslate"><span class="pre">docs/requirements.txt</span></code><a class="headerlink" href="#docs-requirements-txt" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sphinx-honu @ git+https://github.com/HonuRobotics/honu-docs@v0.1.0
+</pre></div>
+</div>
+<p>Pin a release tag. Rebuilding an old distribution branch keeps the exact
+look it shipped with; bumping the pin per branch is a deliberate change.</p>
+</section>
+<section id="github-workflows-docs-yml">
+<h2>3. <code class="docutils literal notranslate"><span class="pre">.github/workflows/docs.yml</span></code><a class="headerlink" href="#github-workflows-docs-yml" title="Link to this heading"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Documentation</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">lyrical</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">docs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HonuRobotics/honu-docs/.github/workflows/docs.yml@v0.1.0</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">default_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lyrical</span>
+</pre></div>
+</div>
+<p>Add each new distribution branch to <code class="docutils literal notranslate"><span class="pre">push.branches</span></code> as it is created.
+<code class="docutils literal notranslate"><span class="pre">default_version</span></code> chooses which branch owns the site root redirect; leave
+it out to use the repository default branch.</p>
+</section>
+<section id="one-time-repository-setup">
+<h2>One time repository setup<a class="headerlink" href="#one-time-repository-setup" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Push once so the workflow creates the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch.</p></li>
+<li><p>In the repository settings, enable GitHub Pages from the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code>
+branch, root folder.</p></li>
+<li><p>Point the repository About URL and a short README at the site.</p></li>
+</ol>
+<p>The site appears at <code class="docutils literal notranslate"><span class="pre">https://honurobotics.github.io/&lt;repository&gt;/</span></code>.</p>
+</section>
+<section id="writing-pages">
+<h2>Writing pages<a class="headerlink" href="#writing-pages" title="Link to this heading"></a></h2>
+<p>Pages are MyST Markdown. Hidden <code class="docutils literal notranslate"><span class="pre">toctree</span></code> blocks in section index pages
+build the sidebar; the <code class="docutils literal notranslate"><span class="pre">colon_fence</span></code> extension is enabled so admonitions
+can be written with <code class="docutils literal notranslate"><span class="pre">:::</span></code> fences. Build locally with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>docs/requirements.txt
+sphinx-build<span class="w"> </span>-W<span class="w"> </span>docs<span class="w"> </span>_build/html
+python3<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span>-d<span class="w"> </span>_build/html
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Honu Docs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="versioning.html" class="btn btn-neutral float-right" title="Versioning model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Honu Robotics.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: main
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="honu-version-list">
+      <dt>Distributions</dt>
+      <dd><a href="/honu-docs/main/" data-version="main">Main</a></dd>
+    </dl>
+  </div>
+</div>
+<script>
+  (function () {
+    var current = "main";
+    var base = "/honu-docs/";
+
+    /* Keep the reader on the same page when switching versions; the
+       version root href stays as the fallback for pages a version lacks. */
+    function wire() {
+      document.querySelectorAll('.rst-other-versions a[data-version]').forEach(function (a) {
+        var target = a.getAttribute('data-version');
+        var path = window.location.pathname;
+        if (target !== current && path.indexOf('/' + current + '/') !== -1) {
+          a.href = path.replace('/' + current + '/', '/' + target + '/');
+        }
+      });
+    }
+
+    if (!window.fetch) { wire(); return; }
+
+    /* The deploy tool maintains versions.json at the site root; reading it
+       at runtime lets builds published before a new distribution existed
+       still offer it in the flyout. Offline or local preview builds fall
+       back to the build time list rendered above. */
+    fetch(base + 'versions.json', {cache: 'no-cache'}).then(function (response) {
+      if (!response.ok) { throw new Error(response.status); }
+      return response.json();
+    }).then(function (entries) {
+      var list = document.getElementById('honu-version-list');
+      if (!list || !entries.length) { return; }
+      list.querySelectorAll('dd').forEach(function (dd) { dd.remove(); });
+      entries.forEach(function (entry) {
+        var a = document.createElement('a');
+        a.href = entry.url;
+        a.setAttribute('data-version', entry.name);
+        a.textContent = entry.name.charAt(0).toUpperCase() + entry.name.slice(1);
+        var dd = document.createElement('dd');
+        dd.appendChild(a);
+        list.appendChild(dd);
+      });
+    }).catch(function () {}).finally(wire);
+  })();
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
