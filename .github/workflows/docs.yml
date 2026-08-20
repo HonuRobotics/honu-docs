@@ -47,7 +47,7 @@ jobs:
       DOCS_VERSION: ${{ github.head_ref || github.ref_name }}
       DOCS_BASEURL: /${{ github.event.repository.name }}/
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
