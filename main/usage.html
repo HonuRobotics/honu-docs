@@ -112,7 +112,7 @@ extension defaults.</p>
 </section>
 <section id="docs-requirements-txt">
 <h2>2. <code class="docutils literal notranslate"><span class="pre">docs/requirements.txt</span></code><a class="headerlink" href="#docs-requirements-txt" title="Link to this heading"></a></h2>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sphinx-honu @ git+https://github.com/HonuRobotics/honu-docs@v0.1.0
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sphinx-honu @ git+https://github.com/HonuRobotics/honu-docs@v0.2.0
 </pre></div>
 </div>
 <p>Pin a release tag. Rebuilding an old distribution branch keeps the exact
@@ -129,7 +129,7 @@ look it shipped with; bumping the pin per branch is a deliberate change.</p>
 
 <span class="nt">jobs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">docs</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HonuRobotics/honu-docs/.github/workflows/docs.yml@v0.1.0</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HonuRobotics/honu-docs/.github/workflows/docs.yml@v0.2.0</span>
 <span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
 <span class="w">    </span><span class="nt">with</span><span class="p">:</span>
@@ -154,7 +154,8 @@ branch, root folder.</p></li>
 <h2>Writing pages<a class="headerlink" href="#writing-pages" title="Link to this heading"></a></h2>
 <p>Pages are MyST Markdown. Hidden <code class="docutils literal notranslate"><span class="pre">toctree</span></code> blocks in section index pages
 build the sidebar; the <code class="docutils literal notranslate"><span class="pre">colon_fence</span></code> extension is enabled so admonitions
-can be written with <code class="docutils literal notranslate"><span class="pre">:::</span></code> fences. Build locally with:</p>
+can be written with <code class="docutils literal notranslate"><span class="pre">:::</span></code> fences, and diagrams are text in
+<code class="docutils literal notranslate"><span class="pre">```{mermaid}</span></code> blocks (rendered in the browser). Build locally with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>docs/requirements.txt
 sphinx-build<span class="w"> </span>-W<span class="w"> </span>docs<span class="w"> </span>_build/html
 python3<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span>-d<span class="w"> </span>_build/html
