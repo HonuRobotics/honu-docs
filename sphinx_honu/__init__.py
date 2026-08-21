@@ -4,7 +4,7 @@ Consumers enable everything with ``extensions = ['sphinx_honu']``. The
 extension applies the stock sphinx_rtd_theme configured exactly as
 docs.ros.org (ros2/ros2_documentation) runs it, adds the Honu brand skin,
 the version flyout and the GitHub edit link, and wires MyST so pages are
-written in Markdown.
+written in Markdown, with mermaid for diagrams.
 
 Only settings the consumer left untouched are filled in, so any value set
 explicitly in a consumer conf.py wins.
@@ -20,7 +20,7 @@ Environment contract (set by the reusable deploy workflow):
 import os
 from pathlib import Path
 
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 
 _HERE = Path(__file__).resolve().parent
 
@@ -86,6 +86,9 @@ def _config_inited(app, config):
 
 def setup(app):
     app.setup_extension('myst_parser')
+    # Diagrams as text: ```{mermaid} blocks render client side, so pages
+    # stay editable and the build needs no graphviz.
+    app.setup_extension('sphinxcontrib.mermaid')
     app.add_config_value('honu_github', None, 'html')
     app.add_config_value('honu_docs_dir', 'docs', 'html')
     app.connect('config-inited', _config_inited)

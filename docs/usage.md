@@ -21,7 +21,7 @@ extension defaults.
 ## 2. `docs/requirements.txt`
 
 ```text
-sphinx-honu @ git+https://github.com/HonuRobotics/honu-docs@v0.1.0
+sphinx-honu @ git+https://github.com/HonuRobotics/honu-docs@v0.2.0
 ```
 
 Pin a release tag. Rebuilding an old distribution branch keeps the exact
@@ -39,7 +39,7 @@ on:
 
 jobs:
   docs:
-    uses: HonuRobotics/honu-docs/.github/workflows/docs.yml@v0.1.0
+    uses: HonuRobotics/honu-docs/.github/workflows/docs.yml@v0.2.0
     permissions:
       contents: write
     with:
@@ -63,7 +63,8 @@ The site appears at `https://honurobotics.github.io/<repository>/`.
 
 Pages are MyST Markdown. Hidden `toctree` blocks in section index pages
 build the sidebar; the `colon_fence` extension is enabled so admonitions
-can be written with `:::` fences. Build locally with:
+can be written with `:::` fences, and diagrams are text in
+```` ```{mermaid} ```` blocks (rendered in the browser). Build locally with:
 
 ```bash
 pip install -r docs/requirements.txt

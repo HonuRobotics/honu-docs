@@ -65,6 +65,12 @@ def test_myst_note_rendered(site):
     assert 'admonition note' in index, 'colon fence admonition not rendered'
 
 
+def test_mermaid_diagrams_render(site):
+    usage = (site / 'usage.html').read_text()
+    assert 'mermaid' in usage, 'mermaid block did not reach the page'
+    assert 'graph LR' in usage
+
+
 def test_local_build_defaults(tmp_path):
     out = build(tmp_path, {'DOCS_VERSION': '', 'DOCS_BASEURL': '',
                            'DOCS_VERSIONS': ''})
