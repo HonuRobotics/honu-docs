@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sphinx-honu"
-version = "0.2.0"
+version = "0.2.1"
 description = "Honu Robotics documentation house style: docs.ros.org functionality, Honu branding"
 readme = "README.md"
 requires-python = ">=3.10"
