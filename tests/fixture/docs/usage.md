@@ -7,3 +7,10 @@ something to render.
 graph LR
   A[config] --> B[URDF]
 ```
+
+The same diagram as a plain fence, the form GitHub and editor previews draw:
+
+```mermaid
+graph TD
+  C[plain fence] --> D[directive]
+```

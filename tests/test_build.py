@@ -71,6 +71,13 @@ def test_mermaid_diagrams_render(site):
     assert 'graph LR' in usage
 
 
+def test_plain_mermaid_fence_renders(site):
+    usage = (site / 'usage.html').read_text()
+    assert 'graph TD' in usage, 'plain ```mermaid fence did not reach the page'
+    assert 'highlight-mermaid' not in usage, (
+        'plain ```mermaid fence was rendered as a code block')
+
+
 def test_local_build_defaults(tmp_path):
     out = build(tmp_path, {'DOCS_VERSION': '', 'DOCS_BASEURL': '',
                            'DOCS_VERSIONS': ''})
